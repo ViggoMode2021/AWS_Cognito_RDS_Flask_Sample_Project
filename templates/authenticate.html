@@ -1,0 +1,57 @@
+<html>
+
+<center>
+<h1>Please check your email for an authentication code.</h1>
+</center>
+
+    {% with messages = get_flashed_messages()  %}
+    {% if messages %}
+    {% for message in messages %}
+    <div id="confirmation-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" onclick="document.getElementById('confirmation-box').style.display = 'none'" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/authenticate_account.css') }}">
+
+<div class="login-wrap">
+	<div class="login-html">
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<div class="login-form">
+              <form class="login-container" action="{{ url_for('authenticate') }}" method="POST">
+			<div class="sign-in-htm">
+				<div class="group">
+					<label for="user" class="label">Email</label>
+         <input type="text" class="form-control" name="authentication_code" id="authentication_code" placeholder="Enter your authentication code" maxlength="40"/>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Input authentication code">
+                    </form>
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a href="{{ url_for('login_page') }}">Login</a>
+				</div>
+			</div>
+			<div class="sign-up-htm">
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a href="{{ url_for('sign_up') }}">Sign up</a>
+				</div>
+			</div>
+                    </form>
+				</div>
+				</div>
+			</div>
+
+<a href = "{{ url_for('login_page') }}">Login page</a>
+
+</html>
